@@ -41,7 +41,7 @@ class ProductController extends Controller
             });
         }
 
-        $products = $query->paginate(12);
+        $products = $query->latest()->paginate(100);
 
         return response()->json($products);
     }

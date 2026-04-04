@@ -27,7 +27,7 @@ class AdminProductController extends Controller
             });
         }
 
-        $products = $query->latest()->paginate(20);
+        $products = $query->latest()->paginate(100);
         return response()->json($products);
     }
 
