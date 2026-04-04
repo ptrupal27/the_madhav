@@ -25,7 +25,7 @@ const ProductSection = ({ products: passedProducts }) => {
                 setLoading(false);
                 return;
             }
-            
+
             // Fallback to API if nothing in localStorage
             await fetchProductsFromAPI();
         } catch (error) {
@@ -40,7 +40,7 @@ const ProductSection = ({ products: passedProducts }) => {
             const productData = response.data || response;
             const finalData = Array.isArray(productData) ? productData.slice(0, 8) : [];
             setProducts(finalData);
-            
+
             // Initialize localStorage with API data if empty
             if (finalData.length > 0) {
                 localStorage.setItem('home_bestselling_products', JSON.stringify(finalData));

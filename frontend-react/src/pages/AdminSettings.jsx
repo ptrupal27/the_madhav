@@ -178,20 +178,31 @@ const AdminSettings = () => {
                     {activeTab === 'payment' && (
                         <div className="animate__animated animate__fadeIn">
                             <div className="d-flex align-items-center mb-4">
-                                <img src="https://razorpay.com/favicon.png" width="32" className="me-2" alt="Razorpay" />
-                                <h5 className="fw-bold mb-0">Razorpay Integration</h5>
+                                <img src="https://www.cashfree.com/favicon.ico" width="32" className="me-2" alt="Cashfree" />
+                                <h5 className="fw-bold mb-0">Cashfree Integration</h5>
                             </div>
                             <div className="alert alert-info">
                                 <h6 className="fw-bold"><i className="fa-solid fa-circle-info me-2"></i> How to setup?</h6>
-                                <p className="mb-0 smaller">Go to your Razorpay Dashboard {'>'} Settings {'>'} API Keys and copy the <strong>Key ID</strong> and <strong>Key Secret</strong> into your <code>.env</code> file.</p>
+                                <p className="mb-0 smaller">Go to your Cashfree Dashboard {'>'} Payment Gateway {'>'} Developer Reources {'>'} API Keys and copy the <strong>App ID</strong> and <strong>Secret Key</strong> into your <code>.env</code> file or here.</p>
                             </div>
                             <div className="mb-4">
-                                <label className="form-label fw-bold small">Razorpay Key ID</label>
-                                <input type="text" className="form-control font-monospace" placeholder="rzp_test_..." value={settings.razorpay_key || ''} onChange={(e) => setSettings({ ...settings, razorpay_key: e.target.value })} />
+                                <label className="form-label fw-bold small">Cashfree App ID</label>
+                                <input type="text" className="form-control font-monospace" placeholder="123456..." value={settings.cashfree_app_id || ''} onChange={(e) => setSettings({ ...settings, cashfree_app_id: e.target.value })} />
                             </div>
                             <div className="mb-4">
-                                <label className="form-label fw-bold small">Razorpay Secret</label>
-                                <input type="password" className="form-control font-monospace" placeholder="••••••••••••••••" value={settings.razorpay_secret || ''} onChange={(e) => setSettings({ ...settings, razorpay_secret: e.target.value })} />
+                                <label className="form-label fw-bold small">Cashfree Secret Key</label>
+                                <input type="password" className="form-control font-monospace" placeholder="cfsk_ma_prod_..." value={settings.cashfree_secret_key || ''} onChange={(e) => setSettings({ ...settings, cashfree_secret_key: e.target.value })} />
+                            </div>
+                            <div className="mb-4">
+                                <label className="form-label fw-bold small">Cashfree API Version</label>
+                                <input type="text" className="form-control font-monospace" placeholder="2023-08-01" value={settings.cashfree_api_version || '2023-08-01'} onChange={(e) => setSettings({ ...settings, cashfree_api_version: e.target.value })} />
+                            </div>
+                            <div className="mb-4">
+                                <label className="form-label fw-bold small">Cashfree Environment</label>
+                                <select className="form-select" value={settings.cashfree_mode || 'production'} onChange={(e) => setSettings({ ...settings, cashfree_mode: e.target.value })}>
+                                    <option value="production">Production (Live)</option>
+                                    <option value="sandbox">Sandbox (Test)</option>
+                                </select>
                             </div>
                             <button className="btn btn-primary px-5 fw-bold" onClick={handleSave}>Save Keys</button>
                         </div>

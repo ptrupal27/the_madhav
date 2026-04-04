@@ -2,6 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import api from '../services/api';
 
+// Safely extract string from multilingual name objects {en, hi, gu}
+const resolveName = (val) => {
+    if (!val) return '';
+    if (typeof val === 'object' && val !== null) {
+        const lang = localStorage.getItem('i18nextLng') || 'en';
+        return val[lang] || val.en || Object.values(val)[0] || '';
+    }
+    return String(val);
+};
+
 const UserDashboard = () => {
     const [user, setUser] = useState(null);
     const [orders, setOrders] = useState([]);
@@ -382,7 +392,7 @@ const UserDashboard = () => {
                                                                 />
                                                             </div>
                                                             <div>
-                                                                <div className="fw-bold small">{item.product_name}</div>
+                                                                <div className="fw-bold small">{resolveName(item.product_name || item.product?.name)}</div>
                                                                 <div className="smaller text-muted">ID: {item.product_id}</div>
                                                             </div>
                                                         </div>

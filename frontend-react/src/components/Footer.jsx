@@ -61,7 +61,8 @@ const Footer = () => {
             <div className="footer-bottom">
                  <div className="bottom-container">
                     <p>© 2026 The Madhav Agriculture. All Rights Reserved.</p>
-                     <p className="design-by">Designed by <span className="highlight">AD DIGITAL</span></p>
+                    <p className="design-by">Designed by <a href="https://addigital.in/" target="_blank" rel="ad_digital">AD DIGITAL</a></p>
+                     {/* <p className="design-by">Designed by <span className="highlight">AD DIGITAL</span></p> */}
                  </div>
             </div>
         </footer>

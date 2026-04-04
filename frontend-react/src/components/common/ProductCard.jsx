@@ -24,7 +24,13 @@ const ProductCard = ({ product }) => {
     };
 
     const getProductName = (p) => {
-        return p?.name || '';
+        if (!p) return '';
+        const name = p.name;
+        if (typeof name === 'object' && name !== null) {
+            const lang = i18n.language || localStorage.getItem('i18nextLng') || 'en';
+            return name[lang] || name.en || Object.values(name)[0] || '';
+        }
+        return name || '';
     };
 
     return (
@@ -45,7 +51,7 @@ const ProductCard = ({ product }) => {
                 </Link>
                 <p className="product-price mb-3">{product.price?.toString().startsWith('₹') ? product.price : `₹${product.price}`}</p>
                 <button className="cart-button mb-2" style={{ background: 'transparent', color: '#13985c', border: '2px solid #13985c' }} onClick={handleAddToCart}>
-                    <i className="fa-solid fa-cart-shopping me-2"></i> {t('add_to_cart')}
+                    <i className="fa-solid fa-cart-shopping me-2 add-to-cart-icon"></i> {t('add_to_cart')}
                 </button>
                 <button className="cart-button mt-1" onClick={handleBuyNow}>
                     <i className="fa-solid fa-bolt me-2"></i> {t('buy_now')}

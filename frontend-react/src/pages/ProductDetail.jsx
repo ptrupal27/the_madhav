@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import api, { getImageUrl, API_URL } from '../services/api';
 import { useCart } from '../context/CartContext';
+import FormattedDescription from '../components/common/FormattedDescription';
 
 const ProductDetail = () => {
     const { id } = useParams();
@@ -282,9 +283,10 @@ const ProductDetail = () => {
 
                     <h2 className="display-5 fw-bold text-success mb-3">₹{product.price}</h2>
 
-                    <p className="lead text-muted mb-4">
-                        {(typeof product.description === 'object' && product.description !== null) ? (product.description.en || Object.values(product.description)[0]) : product.description}
-                    </p>
+                    <FormattedDescription
+                        className="lead mb-4"
+                        text={(typeof product.description === 'object' && product.description !== null) ? (product.description.en || Object.values(product.description)[0]) : product.description}
+                    />
 
                     <div className="d-flex flex-column align-items-start gap-3 mb-4">
                         <div className="input-group shadow-sm" style={{ width: '100%', maxWidth: '160px' }}>

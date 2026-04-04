@@ -57,9 +57,8 @@ const Checkout = () => {
                 full_name: formData.full_name,
                 email: formData.email,
                 cart_items: cartItems.map(item => ({
-                    id: item.id,
                     product_id: item.product_id,
-                    name: resolveName(item.name),
+                    name: item.name,
                     price: typeof item.price === 'number' ? item.price : parseFloat(String(item.price).replace(/[^\d.]/g, '')),
                     quantity: item.quantity,
                     img: item.img || item.image
@@ -70,7 +69,7 @@ const Checkout = () => {
 
             if (formData.payment_method === 'online' && response.cashfree_order) {
                 const cashfree = window.Cashfree({
-                    mode: "production" // User specified production keys
+                    mode: response.cashfree_mode || "production"
                 });
 
                 let checkoutOptions = {
@@ -186,10 +185,10 @@ const Checkout = () => {
                                             Online Payment (UPI/Card/NetBanking)
                                         </label>
                                     </div>
-                                    <div className="form-check p-3 border rounded disabled">
-                                        <input className="form-check-input" type="radio" name="payment_method" id="cod" checked={formData.payment_method === 'cod'} onChange={() => setFormData({ ...formData, payment_method: 'cod' })} />
-                                        <label className="form-check-label ms-2 fw-bold" htmlFor="cod">
-                                            Cash on Delivery (COD)
+                                    <div className="form-check p-3 border rounded bg-light opacity-50">
+                                        <input className="form-check-input" type="radio" name="payment_method" id="cod" disabled checked={formData.payment_method === 'cod'} onChange={() => {}} />
+                                        <label className="form-check-label ms-2 fw-bold text-muted" htmlFor="cod">
+                                            Cash on Delivery (COD) <small className="d-block fw-normal">(Currently Unavailable)</small>
                                         </label>
                                     </div>
                                 </div>

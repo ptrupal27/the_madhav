@@ -1,4 +1,5 @@
-export const API_URL = import.meta.env.VITE_API_URL || 'https://themadhav.com/api';
+const rawApiUrl = import.meta.env.VITE_API_URL || 'https://themadhav.com/api';
+export const API_URL = rawApiUrl.endsWith('/') ? rawApiUrl.slice(0, -1) : rawApiUrl;
 export const BASE_URL = import.meta.env.VITE_BASE_URL || 'https://themadhav.com';
 
 // Use BASE_URL for storage, removing trailing slash if present

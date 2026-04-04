@@ -26,6 +26,8 @@ Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/categories/{id}', [CategoryController::class, 'show']);
 Route::get('/home-settings', [\App\Http\Controllers\Api\SettingController::class, 'getHomeSettings']);
 Route::get('/track-order/{orderNumber}', [OrderController::class, 'trackOrder']);
+Route::post('/checkout', [OrderController::class, 'placeOrder']);
+Route::post('/verify-payment', [OrderController::class, 'verifyPayment']);
 
 // Cart routes - accessible by public (session based) and auth users
 Route::get('/cart', [CartController::class, 'index']);
@@ -100,6 +102,4 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Checkout
     Route::get('/orders', [OrderController::class, 'index']);
-    Route::post('/checkout', [OrderController::class, 'placeOrder']);
-    Route::post('/verify-payment', [OrderController::class, 'verifyPayment']);
 });
