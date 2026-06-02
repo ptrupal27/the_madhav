@@ -352,7 +352,7 @@ const Header = () => {
         <nav className="sub-navbar navbar-expand-lg">
           <div className="container">
             <ul className="navbar-nav d-flex flex-row justify-content-lg-center flex-wrap">
-              {categories.map((cat, idx) => {
+                            {Array.isArray(categories) && categories.map((cat, idx) => {
                 const lang = i18n.language || 'en';
                 const catName = typeof cat.name === 'object' ? (cat.name[lang] || cat.name.en) : cat.name;
 
@@ -375,14 +375,15 @@ const Header = () => {
                   </li>
                 );
               })}
-
               {/* Fallback for hardcoded categories if not in DB yet or to keep UI consistent */}
-              {categories.length === 0 && (
+              {(Array.isArray(categories) ? categories.length : 0) === 0 && (
                 <>
                   <li className="nav-item"><Link className="nav-link px-2" to="/products/fruitplant">{t('fruit_plants')}</Link></li>
                   <li className="nav-item"><Link className="nav-link px-2" to="/products/vegetable">{t('vegetable_plants')}</Link></li>
                 </>
               )}
+
+
             </ul>
           </div>
         </nav>

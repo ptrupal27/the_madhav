@@ -104,6 +104,9 @@ const api = {
     register: (data) => api.request('/register', 'POST', data),
     logout: () => api.request('/logout', 'POST'),
     getUser: () => api.request('/user'),
+    sendForgotOtp: (email) => api.request('/forgot-password/send-otp', 'POST', { email }),
+    verifyForgotOtp: (email, otp) => api.request('/forgot-password/verify-otp', 'POST', { email, otp }),
+    resetPassword: (email, otp, password, password_confirmation) => api.request('/forgot-password/reset', 'POST', { email, otp, password, password_confirmation }),
 
     // Product methods
     getProducts: (params = '') => api.request(`/products${params}`),

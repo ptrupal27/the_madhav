@@ -3,6 +3,7 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import ForgotPassword from './pages/ForgotPassword';
 import CategoryPage from './pages/CategoryPage';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -53,6 +54,7 @@ function App() {
           <Route element={<PublicRoute />}>
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
+            <Route path="forgot-password" element={<ForgotPassword />} />
           </Route>
 
           <Route path="products/:category" element={<CategoryPage />} />

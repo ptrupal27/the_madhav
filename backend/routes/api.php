@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ForgotPasswordOtpController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CartController;
@@ -15,10 +16,24 @@ use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminSubCategoryController;
 use App\Http\Controllers\Admin\AdminSettingController;
 use App\Http\Controllers\User\UserDashboardController;
+use Illuminate\Support\Facades\Mail;
 
 // Public Routes
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/forgot-password/send-otp', [ForgotPasswordOtpController::class, 'sendOtp']);
+Route::post('/forgot-password/verify-otp', [ForgotPasswordOtpController::class, 'verifyOtp']);
+Route::post('/forgot-password/reset', [ForgotPasswordOtpController::class, 'resetPassword']);
+
+
+Route::get('/test-mail', function () {
+    Mail::raw('OTP Test Mail', function ($message) {
+        $message->to('dharmeshkatriya512@gmail.com')
+                ->subject('Laravel Test');
+    });
+
+    return 'Mail Sent';
+});
 
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{id}', [ProductController::class, 'show']);

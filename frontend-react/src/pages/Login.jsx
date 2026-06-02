@@ -106,7 +106,7 @@ const Login = () => {
                             <label className="form-label small fw-700 text-muted text-uppercase m-0" style={{ fontSize: '11px', letterSpacing: '1px' }}>
                                 Password
                             </label>
-                            {/* Potential for Forgot Password link here */}
+                            
                         </div>
                         <div className="input-group bg-light border-0 rounded-3 p-1">
                             <span className="input-group-text bg-transparent border-0 pe-0 ms-2">
@@ -129,6 +129,11 @@ const Login = () => {
                             >
                                 <i className={`fa-solid ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`} style={{ fontSize: '14px' }}></i>
                             </button>
+                        </div>
+                        <div className="text-end mt-2">
+                            <Link to="/forgot-password" className="text-success small text-decoration-none fw-bold">
+                                Forgot Password?
+                            </Link>
                         </div>
                     </div>
 
