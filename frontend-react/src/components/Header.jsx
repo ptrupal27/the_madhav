@@ -342,13 +342,59 @@ const Header = () => {
               <li className="nav-item">
                 <Link className="nav-link" to="/contact" id="navContact" onClick={() => setIsOpen(false)}>{t('contact_us')}</Link>
               </li>
+
+              {/* Mobile-only Categories Links */}
+              <li className="nav-item d-lg-none"><hr className="my-2 text-muted" style={{ opacity: 0.15 }} /></li>
+              <li className="nav-item d-lg-none">
+                <span className="nav-link text-muted small fw-bold text-uppercase px-3" style={{ fontSize: '11px', letterSpacing: '0.5px' }}>
+                  {t('categories') || 'Categories'}
+                </span>
+              </li>
+              {Array.isArray(categories) && categories.map((cat) => {
+                const lang = i18n.language || 'en';
+                const catName = typeof cat.name === 'object' ? (cat.name[lang] || cat.name.en) : cat.name;
+
+                let icon = 'fa-leaf';
+                if (cat.slug.includes('fruit')) icon = 'fa-apple-whole';
+                if (cat.slug.includes('veg')) icon = 'fa-carrot';
+                if (cat.slug.includes('seed')) icon = 'fa-seedling';
+                if (cat.slug.includes('gardening')) icon = 'fa-faucet-drip';
+                if (cat.slug.includes('flower') || cat.slug.includes('rose') || cat.slug.includes('lily')) icon = 'fa-spa';
+
+                return (
+                  <li key={`mob-${cat.id}`} className="nav-item d-lg-none">
+                    <Link
+                      className={`nav-link px-3 ${location.pathname === `/products/${cat.slug}` ? 'active' : ''}`}
+                      to={`/products/${cat.slug}`}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <i className={`fa-solid ${icon} me-2 text-success`} style={{ width: '18px' }}></i> {catName}
+                    </Link>
+                  </li>
+                );
+              })}
+              {/* Fallback categories for mobile if not in DB yet */}
+              {(Array.isArray(categories) ? categories.length : 0) === 0 && (
+                <>
+                  <li className="nav-item d-lg-none">
+                    <Link className="nav-link px-3" to="/products/fruitplant" onClick={() => setIsOpen(false)}>
+                      <i className="fa-solid fa-apple-whole me-2 text-success" style={{ width: '18px' }}></i> {t('fruit_plants')}
+                    </Link>
+                  </li>
+                  <li className="nav-item d-lg-none">
+                    <Link className="nav-link px-3" to="/products/vegetable" onClick={() => setIsOpen(false)}>
+                      <i className="fa-solid fa-carrot me-2 text-success" style={{ width: '18px' }}></i> {t('vegetable_plants')}
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
 
           </div>
         </div>
       </nav>
 
-      <div className="sub-navbar-wrapper">
+      <div className="sub-navbar-wrapper d-none d-lg-block">
         <nav className="sub-navbar navbar-expand-lg">
           <div className="container">
             <ul className="navbar-nav d-flex flex-row justify-content-lg-center flex-wrap">
