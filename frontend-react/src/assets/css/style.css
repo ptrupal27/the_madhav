@@ -178,12 +178,19 @@ body::after {
     padding: 10px 15px !important;
     text-transform: uppercase;
     white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .sub-navbar .nav-link i {
     color: #fff;
     /* Icon color */
-    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+.sub-navbar-label {
+    line-height: 1.2;
 }
 
 /* Hover and Active effect on Sub-Navbar items */
@@ -947,26 +954,39 @@ body {
     }
 
     .sub-navbar .navbar-nav {
-        flex-wrap: wrap !important;
-        overflow-x: hidden !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        overflow-x: visible !important;
         white-space: normal !important;
-        justify-content: space-between !important;
+        justify-content: initial !important;
         gap: 0 !important;
         padding-bottom: 0 !important;
+        width: 100%;
     }
 
     .sub-navbar .nav-item {
-        flex: 0 0 50%;
-        max-width: 50%;
+        flex: 0 0 auto;
+        max-width: none;
+        display: flex;
     }
 
     .sub-navbar .nav-link {
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-wrap: wrap;
         width: 100%;
+        min-width: 0;
         padding: 10px 8px !important;
         font-size: 12px;
+        white-space: normal !important;
+        text-align: center;
+        line-height: 1.35;
+        gap: 6px;
+    }
+
+    .sub-navbar-label {
+        overflow-wrap: anywhere;
     }
 }
 
@@ -1473,6 +1493,34 @@ body::before {
     .sub-navbar .nav-link {
         padding: 10px 15px !important;
         font-size: 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    .sub-navbar .container {
+        padding: 0 10px;
+    }
+
+    .sub-navbar .navbar-nav {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        overflow-x: visible !important;
+        white-space: normal !important;
+        padding: 6px 0;
+        width: 100%;
+    }
+
+    .sub-navbar .nav-item {
+        display: flex;
+        min-width: 0;
+    }
+
+    .sub-navbar .nav-link {
+        justify-content: center;
+        flex-wrap: wrap;
+        min-width: 0;
+        white-space: normal !important;
+        text-align: center;
     }
 }
 

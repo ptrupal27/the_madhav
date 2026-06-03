@@ -525,7 +525,7 @@ const Header = () => {
       <div className="sub-navbar-wrapper">
         <nav className="sub-navbar navbar-expand-lg">
           <div className="container">
-            <ul className="navbar-nav d-flex flex-row justify-content-lg-center flex-wrap">
+            <ul className="navbar-nav d-flex flex-row justify-content-lg-center flex-wrap sub-navbar-list">
               {Array.isArray(categories) &&
                 categories.map((cat, idx) => {
                   const lang = i18n.language || "en";
@@ -548,12 +548,13 @@ const Header = () => {
                     icon = "fa-spa";
 
                   return (
-                    <li key={cat.id} className="nav-item">
+                    <li key={cat.id} className="nav-item sub-navbar-item">
                       <Link
-                        className={`nav-link px-3 ${location.pathname === `/products/${cat.slug}` ? "active" : ""}`}
+                        className={`nav-link px-3 sub-navbar-link ${location.pathname === `/products/${cat.slug}` ? "active" : ""}`}
                         to={`/products/${cat.slug}`}
                       >
-                        <i className={`fa-solid ${icon} me-1`}></i> {catName}
+                        <i className={`fa-solid ${icon}`}></i>
+                        <span className="sub-navbar-label">{catName}</span>
                       </Link>
                     </li>
                   );
