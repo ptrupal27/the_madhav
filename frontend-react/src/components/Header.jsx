@@ -486,7 +486,7 @@ const Header = () => {
             className={`collapse navbar-collapse order-3 ${isOpen ? "show" : ""}`}
             id="navbarNav"
           >
-            <ul className="navbar-nav ms-auto me-lg-4">
+             <ul className="navbar-nav ms-auto me-lg-4">
               <li className="nav-item">
                 <Link
                   className="nav-link"
